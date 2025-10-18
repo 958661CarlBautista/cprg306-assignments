@@ -4,18 +4,9 @@ import { useState } from "react";
 
 export default function NewItem() {
   // Product Name initial state, empty string
-  const nameState = useState("");
-  const name = nameState[0];
-  const setName = nameState[1];
-
-  // Category initial state, default to "produce"
-  const categoryState = useState("produce");
-  const category = categoryState[0];
-  const setCategory = categoryState[1];
-
-  const state = useState(1);
-  const quantity = state[0];
-  const setQuantity = state[1];
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("produce");
+  const [quantity, setQuantity] = useState(1);
 
   // Increase quantity by 1, max 20
   function increment(){

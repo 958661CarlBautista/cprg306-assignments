@@ -3,10 +3,8 @@
 import { useState } from "react";
 
 export default function NewItem() {
-  const state = useState(1);
-  const quantity = state[0];
-  const setQuantity = state[1];
-
+  const [quantity, setQuantity] = useState(1);
+  
   // Increase quantity by 1, max 20
   function increment(){
       setQuantity(function (prev) {
