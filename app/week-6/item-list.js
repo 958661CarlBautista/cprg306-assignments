@@ -1,96 +1,74 @@
-import Item from './item';
+"use client";
 
-export default function ItemList(){
-  const item1 = {
-  name: "milk, 4 L 🥛",
-  quantity: 1,
-  category: "dairy",
-};
- 
-const item2 = {
-  name: "bread 🍞",
-  quantity: 2,
-  category: "bakery",
-};
- 
-const item3 = {
-  name: "eggs, dozen 🥚",
-  quantity: 2,
-  category: "dairy",
-};
- 
-const item4 = {
-  name: "bananas 🍌",
-  quantity: 6,
-  category: "produce",
-};
- 
-const item5 = {
-  name: "broccoli 🥦",
-  quantity: 3,
-  category: "produce",
-};
- 
-const item6 = {
-  name: "chicken breasts, 1 kg 🍗",
-  quantity: 1,
-  category: "meat",
-};
- 
-const item7 = {
-  name: "pasta sauce 🍝",
-  quantity: 3,
-  category: "canned goods",
-};
- 
-const item8 = {
-  name: "spaghetti, 454 g 🍝",
-  quantity: 2,
-  category: "dry goods",
-};
- 
-const item9 = {
-  name: "toilet paper, 12 pack 🧻",
-  quantity: 1,
-  category: "household",
-};
- 
-const item10 = {
-  name: "paper towels, 6 pack",
-  quantity: 1,
-  category: "household",
-};
- 
-const item11 = {
-  name: "dish soap 🍽️",
-  quantity: 1,
-  category: "household",
-};
- 
-const item12 = {
-  name: "hand soap 🧼",
-  quantity: 4,
-  category: "household",
-};
+import { useState } from "react";
+import Item from "./item";
+import data from "./items.json";
 
-// Create an array of all the items
-const items = [item1, item2, item3, item4,
-   item5, item6, item7, item8, item9, item10, 
-   item11, item12];
+export default function ItemList() {
+  const [sortBy, setSortBy] = useState("name");
 
-// Use the map() method to render each item in the array
-return (
-<ul>
-  {items.map(function(item, index) {
-    return (
-      <Item
-        key = {index}
-        name={item.name}
-        quantity={item.quantity}
-        category={item.category}
-      />
-    );
-  })}
-</ul>
-);
+  // Compares two items for sorting based on the sort mode.
+  // Returns a number depending on the results. 
+  // More efficient using localeCompare for string comparison.
+  const compare = (a, b) => {
+    if (sortBy === "name") {
+      /*
+      - 1 =product A before product B
+      + 1 = product B before product A
+      0 = no change, a equals b
+      */
+      return a.name.localeCompare(b.name);
+    }
+    const byCat = a.category.localeCompare(b.category);
+
+    // If categories are different, use it to decide the order
+    if (byCat !== 0) {
+      return byCat;
+    }
+    // If categories are the same, sort by name
+    return a.name.localeCompare(b.name);
+  };
+
+  // Create copy of the data
+  const items = [...data].sort(compare);
+
+  // Sort by buttons
+  const base = "px-3 py-2 border rounded-md";
+  let nameBtn = base;
+  if (sortBy === "name") {
+    nameBtn += " bg-blue-600 text-white";
+  } else {
+    nameBtn += " bg-gray-500 text-black";
+  }
+  let catBtn = base;
+  if (sortBy === "category") {
+    catBtn += " bg-blue-600 text-white";
+  } else {
+    catBtn += " bg-gray-500 text-black";
+  }
+
+  return (
+    <div className="w-full max-w-2xl mx-auto">
+      <div className="mb-3 flex items-center gap-2">
+        <span className="text-gray-400">Sort by:</span>
+        <button type="button" onClick={() => setSortBy("name")} className={nameBtn}>
+          Name
+        </button>
+        <button type="button" onClick={() => setSortBy("category")} className={catBtn}>
+          Category
+        </button>
+      </div>
+
+      <ul>
+        {items.map((item) => (
+          <Item
+            key={item.id}
+            name={item.name}
+            quantity={item.quantity}
+            category={item.category}
+          />
+        ))}
+      </ul>
+    </div>
+  );
 }

@@ -1,11 +1,11 @@
-// app/week-3/item.js
-
-export default function Item({name, quantity, category}) {
+export default function Item({ name, quantity, category }) {
   return (
-    <li className="border border-gray-300 rounded-md p-4 mb-4 w-125">
+    <li className="border border-gray-300 rounded-md p-2 mb-2 w-full">
       <div className="font-serif">{name}</div>
-      <div>quantity: {quantity}</div>
-      <div>category: {category}</div>
+      <div>Quantity: {quantity}</div>
+      <div>
+        Category: <span className="capitalize">{category || ""}</span>
+      </div>
     </li>
   );
 }
