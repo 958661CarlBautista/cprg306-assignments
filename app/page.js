@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Home() {
   return (
@@ -14,8 +15,9 @@ export default function Home() {
           </Link>
         </div>
       </header>
-
+    
       <main className="flex-1 bg-neutral-50">
+        <Analytics/>
         <section className="mx-auto max-w-screen-xl px-4 pt-8 pb-16">
           <h2 className="mb-5 text-2xl font-bold text-center">Assignment Weekly Lab Links</h2>
 
