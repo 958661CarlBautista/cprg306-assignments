@@ -1,5 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useUserAuth } from "../_utils/auth-context";
+
 import { useState } from "react";
 import ItemList from "./item-list";
 import NewItem from "./new-item";
@@ -7,6 +11,18 @@ import data from "./items.json";
 import MealIdeas from "./meal-ideas";
 
 export default function Page() {
+  // Read the current authentication state
+  const { user } = useUserAuth();
+
+  // Client Side navigation
+  const navigate = useRouter();
+
+  // This will force the user if the not logged in to go back to the login page
+   useEffect(() => {
+    if (!user){
+      router.replace("/week-9")};
+    }, [user, navigate]);
+
   const [items, setItems] = useState(data);
   const [selectedItemName, setSelectedItemName] = useState("");
 
@@ -14,6 +30,7 @@ export default function Page() {
     setItems((prev) => [...prev, newItem]);
   }
 
+  // Removes any emojis, trims whitespace, and converts to lowercase
   function cleanName(raw) {
     const beforeComma = String(raw).split(",")[0];
     const noEmoji = beforeComma.replace(/\p{Extended_Pictographic}/gu, "");
