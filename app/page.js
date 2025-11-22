@@ -8,10 +8,10 @@ export default function Home() {
         <div className="mx-auto max-w-screen-xl px-4 py-3 flex items-center justify-between">
           <h1 className="text-lg font-semibold">CPRG306 - Assignment Hub</h1>
           <Link
-            href="/week-8"
+            href="/week-10"
             className="rounded-lg bg-white px-3.5 py-2 text-sm font-semibold text-black"
           >
-            Latest: Week 8
+            Latest: Week 10
           </Link>
         </div>
       </header>
@@ -48,12 +48,6 @@ export default function Home() {
             </Link>
             <Link href="/week-10" className="rounded-2xl border border-black/10 bg-white p-5 hover:shadow">
               <span className="text-lg font-bold text-black">Week 10 - Cloud Firestore</span>
-            </Link>
-            <Link href="/week-11" className="rounded-2xl border border-black/10 bg-white p-5 hover:shadow">
-              <span className="text-lg font-bold text-black">Week 11 - Project Description</span>
-            </Link>
-            <Link href="/week-12" className="rounded-2xl border border-black/10 bg-white p-5 hover:shadow">
-              <span className="text-lg font-bold text-black">Week 12 - API Implmentation</span>
             </Link>
           </div>
         </section>
