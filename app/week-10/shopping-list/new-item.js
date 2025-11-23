@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function NewItem({ onAddItem }) {
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("produce");
+  const [category, setCategory] = useState("Produce");
   const [quantity, setQuantity] = useState(1);
 
   function increment() {
