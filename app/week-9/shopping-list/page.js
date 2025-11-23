@@ -14,6 +14,9 @@ export default function Page() {
   // Read the current authentication state
   const { user } = useUserAuth();
 
+  const navigate = useRouter();
+
+
   // This will force the user if the not logged in to go back to the login page
    useEffect(() => {
     if (!user){
