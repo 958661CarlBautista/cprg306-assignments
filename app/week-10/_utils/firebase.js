@@ -6,14 +6,16 @@ import { getAuth } from "firebase/auth";
 import { getFirestore} from "firebase/firestore";
 
 // Your web app's Firebase configuration
+// Only refers to the environment variables that are set in .env.local file
 const firebaseConfig = {
-  apiKey: "AIzaSyDgqZ0zgbG1P_KrcGC8FidJsPOuUwnwXDo",
-  authDomain: "cprg306-assignments-1692d.firebaseapp.com",
-  projectId: "cprg306-assignments-1692d",
-  storageBucket: "cprg306-assignments-1692d.firebasestorage.app",
-  messagingSenderId: "559712482717",
-  appId: "1:559712482717:web:06f715d8c486dd670deb74"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
